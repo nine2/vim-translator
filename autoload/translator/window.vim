@@ -49,7 +49,7 @@ function! s:win_getoptions(width, height) abort
   let y_pos = pos[0] + line("'<") - 1 + line("'>") - line("'<") + 1
   let x_pos = pos[1] + wincol() -1
 
-  echom [pos, y_pos, winline()]
+  " echom [pos, y_pos, winline()]
   let border = empty(g:translator_window_borderchars) ? 0 : 2
   let y_margin = 2
   let [width, height] = [a:width, a:height]
