@@ -17,11 +17,12 @@ function! s:popup_filter(winid, key) abort
   return v:false
 endfunction
 
+        " \ 'line': a:configs.anchor[0:2] == 'top' ? 'cursor+1' : 'cursor-1',
 function! translator#window#popup#create(linelist, configs) abort
   let options = {
         \ 'pos': a:configs.anchor,
         \ 'col': 'cursor',
-        \ 'line': a:configs.anchor[0:2] == 'top' ? 'cursor+1' : 'cursor-1',
+        \ 'line': a:configs.row,
         \ 'moved': 'any',
         \ 'padding': [0, 0, 0, 0],
         \ 'maxwidth': a:configs.width - 2,

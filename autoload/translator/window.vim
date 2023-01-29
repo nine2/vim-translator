@@ -45,9 +45,11 @@ endfunction
 
 function! s:win_getoptions(width, height) abort
   let pos = win_screenpos('.')
-  let y_pos = pos[0] + winline() - 1
+  " let y_pos = pos[0] + winline() - 1
+  let y_pos = pos[0] + line("'<") - 1 + line("'>") - line("'<") + 1
   let x_pos = pos[1] + wincol() -1
 
+  echom [pos, y_pos, winline()]
   let border = empty(g:translator_window_borderchars) ? 0 : 2
   let y_margin = 2
   let [width, height] = [a:width, a:height]
@@ -91,6 +93,7 @@ function! s:win_getoptions(width, height) abort
     let anchor = substitute(anchor, '\CE', 'right', '')
   endif
   let row = y_pos + y_offset
+  " echom [win_screenpos('.'), winline(), getpos('.'), line("'<"), line("'>"), line("'>") - line("'<") + 1, row, y_pos, y_offset]
   let col = x_pos + x_offset
   return [anchor, row, col, width, height]
 endfunction
@@ -132,5 +135,6 @@ function! translator#window#open(content) abort
         \ 'title': '',
         \ 'borderchars': g:translator_window_borderchars
         \ }
+  " echom configs
   call translator#window#{s:wintype}#create(linelist, configs)
 endfunction
